@@ -1,0 +1,191 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user profiles including their registration details and preference configurations.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique user ID matching the Auth UID."
+        },
+        "full_name": {
+          "type": "string",
+          "description": "The full name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the user."
+        },
+        "business_name": {
+          "type": "string",
+          "description": "The name of the user's business."
+        },
+        "avatar": {
+          "type": "string",
+          "description": "The URL or compressed data URL of the user's avatar image.",
+          "maxLength": 200000
+        },
+        "businessLogo": {
+          "type": "string",
+          "description": "The URL or compressed data URL of the user's company logo.",
+          "maxLength": 500000
+        },
+        "userRole": {
+          "type": "string",
+          "description": "The user's job or operational role."
+        },
+        "industry": {
+          "type": "string",
+          "description": "The business operating industry."
+        },
+        "orgSize": {
+          "type": "string",
+          "description": "Employee organization size range."
+        },
+        "address": {
+          "type": "string",
+          "description": "Physical corporate address."
+        },
+        "routing": {
+          "type": "string",
+          "description": "Financial routing number."
+        },
+        "account": {
+          "type": "string",
+          "description": "Corporate bank account number."
+        },
+        "bankName": {
+          "type": "string",
+          "description": "Corporate banking provider."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Default currency symbol."
+        },
+        "timezone": {
+          "type": "string",
+          "description": "User time zone."
+        },
+        "taxPreset": {
+          "type": "number",
+          "description": "Preset tax percentage."
+        },
+        "stripeKey": {
+          "type": "string",
+          "description": "Custom billing integration public key."
+        },
+        "notifyInvoice": {
+          "type": "boolean",
+          "description": "Invoice status notification preference."
+        },
+        "notifyWeeklyScore": {
+          "type": "boolean",
+          "description": "Weekly scorecard reminder preference."
+        },
+        "notifyAiTip": {
+          "type": "boolean",
+          "description": "AI advisory tip notifications."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the user registered."
+        }
+      },
+      "required": ["id", "full_name", "email"]
+    },
+    "SavedDocument": {
+      "title": "Saved Document",
+      "description": "Stores user generated plans, invoices, quotations, marketing assets, and strategic roadmaps.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique document identifier."
+        },
+        "title": {
+          "type": "string",
+          "description": "Document title."
+        },
+        "category": {
+          "type": "string",
+          "description": "Document classification category."
+        },
+        "date": {
+          "type": "string",
+          "description": "Document creation or due date display string."
+        },
+        "details": {
+          "type": "string",
+          "description": "Document summary or serialized content preview."
+        },
+        "content": {
+          "type": "string",
+          "description": "Full document markdown or body content."
+        },
+        "module": {
+          "type": "string",
+          "description": "Originating module or generation tool identifier."
+        },
+        "tone": {
+          "type": "string",
+          "description": "Voice or tone parameter."
+        },
+        "language": {
+          "type": "string",
+          "description": "Language used in generated document."
+        },
+        "size": {
+          "type": "string",
+          "description": "Approximate storage footprint display string."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the document was generated."
+        }
+      },
+      "required": ["title", "category"]
+    },
+    "Conversation": {
+      "title": "Chat Conversation",
+      "description": "Stores advisory dialogue threads between the user and BizPilot AI.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique conversation thread identifier."
+        },
+        "title": {
+          "type": "string",
+          "description": "Conversation topic title."
+        },
+        "messages": {
+          "type": "array",
+          "description": "Array of exchange message bubbles."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last message interaction timestamp."
+        }
+      },
+      "required": ["title"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "A document storing user profile information and configuration."
+    },
+    "users/{userId}/documents/{docId}": {
+      "schema": { "$ref": "#/entities/SavedDocument" },
+      "description": "Subcollection of generated business documents and assets owned by the user."
+    },
+    "users/{userId}/conversations/{convoId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Subcollection of AI advisory chat histories owned by the user."
+    }
+  }
+}

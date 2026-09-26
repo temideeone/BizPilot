@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* Enable class-based dark mode variant for Tailwind CSS v4 */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  /* Primary & Accent Colors custom branding if needed */
+  --color-primary: #2563eb;
+  --color-accent: #10b981;
+
+  /* Map all default gray classes to slate for a more premium, cooler neutral palette (Notion/Stripe style) */
+  --color-gray-50: var(--color-slate-50);
+  --color-gray-100: var(--color-slate-100);
+  --color-gray-200: var(--color-slate-200);
+  --color-gray-300: var(--color-slate-300);
+  --color-gray-400: var(--color-slate-400);
+  --color-gray-500: var(--color-slate-500);
+  --color-gray-600: var(--color-slate-600);
+  --color-gray-700: var(--color-slate-700);
+  --color-gray-800: var(--color-slate-800);
+  --color-gray-900: var(--color-slate-900);
+  --color-gray-950: var(--color-slate-950);
+}
+
+.dark {
+  /* Redefine base white and gray colors to dark theme equivalents */
+  --color-white: #0f172a; /* Card & Panel backgrounds become dark slate-900 */
+  --color-gray-50: #090d16; /* Main page backgrounds become even darker slate-950 */
+  --color-gray-100: #1e293b; /* Borders/Dividers slate-800 */
+  --color-gray-200: #334155; /* Neutral borders slate-700 */
+  --color-gray-300: #475569; /* Muted borders slate-600 */
+  --color-gray-400: #64748b; /* Placeholders slate-500 */
+  --color-gray-500: #94a3b8; /* Muted text slate-400 */
+  --color-gray-600: #cbd5e1; /* Regular body text slate-300 */
+  --color-gray-700: #e2e8f0; /* Clear body text slate-200 */
+  --color-gray-800: #f1f5f9; /* Title/Header text slate-100 */
+  --color-gray-900: #f8fafc; /* Dynamic active text color slate-50 */
+  --color-gray-950: #ffffff; /* Contrast headings */
+
+  /* Override other default slate classes to avoid high contrast borders and backgrounds */
+  --color-slate-50: #090d16;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #ffffff;
+  --color-slate-950: #ffffff;
+}
+
+html.dark, html.dark body, html.dark #root {
+  background-color: #090d16 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Custom utility rules for Bold Typography theme */
+@utility text-display-huge {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+@utility text-display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+@utility text-display-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Base style improvements for premium scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+

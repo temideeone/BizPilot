@@ -1,0 +1,6 @@
+{
+  "name": "BizPilot AI",
+  "description": "A premium AI-powered SaaS platform for business operations, business plans, invoicing, and marketing suites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
